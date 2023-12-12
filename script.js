@@ -8,9 +8,18 @@ $(document).ready(function () {
     console.log(updateCurrentDay())
 console.log("hello from jquery")
     function updateColor(){
-        var currentDay = dayjs().hour();
+        var currentHour = dayjs().hour();
+
         $(".hour").each(function(){
-            console.log(parseInt($(this).text().replace("AM", "").replace("PM", ""), 10))
+            var blockHour = parseInt($(this).text().replace("AM", "").replace("PM", ""), 10)
+        if (blockHour < currentHour) {
+            console.log($(this).parent())
+            $(this).parent().addClass("past")
+        } else if (blockHour === currentHour) {
+            $(this).parent().addClass("present");
+        } else {
+            $(this).parent().addClass("future")
+        }
         })
     }
     console.log(updateColor())
